@@ -455,8 +455,8 @@ body {
     position: absolute;
     left: 0;
     margin: -2px 0 0 -2px;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     border: 2px solid #2c3e50;
     background: #95a5a6;
@@ -644,8 +644,8 @@ body {
 
 #frame .content .messages {
     height: auto;
-    min-height: calc(100% - 93px);
-    max-height: calc(100% - 93px);
+    min-height: calc(100% - 115px);
+    max-height: calc(100% - 115px);
     overflow-y: scroll;
     overflow-x: hidden;
 }

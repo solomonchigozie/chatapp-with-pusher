@@ -39,6 +39,8 @@ function fetchMessage(){
                     inbox.append(messageTemplate(value.message, 'replies'))
                 }
             })
+
+            scrollToBottom()
         },
         error: function(xhr, status, error){},
         complete : function(){
@@ -64,9 +66,16 @@ function sendMessage(){
             let message = messageBox.val()
             inbox.append(messageTemplate(message, 'replies'))
             messageBox.val('')
+            scrollToBottom()
         },
         success : function(){},
         error: function(xhr, status, error){},
+    })
+}
+
+function scrollToBottom(){
+    $('.messages').stop().animate({
+        scrollTop: $('.messages')[0].scrollHeight
     })
 }
 
@@ -98,7 +107,34 @@ window.Echo.private('message.' + authId)
     // console.log(e)
     if(e.from_id == selectedContact.attr('content')){
         inbox.append(messageTemplate(e.text,'sent'))
+        scrollToBottom()
     }
 })
 
+window.Echo.join('online')
+    .here(users => {
+        // console.log(users)
+        users.forEach(user => {
+            let element = $(`.contact[data-id="${user.id}"]`)
+            if(element.length >0){
+                element.find('.contact-status').removeClass('offline')
+                element.find('.contact-status').addClass('online')
+            }else{
+                element.find('.contact-status').removeClass('online')
+                element.find('.contact-status').addClass('offline')
+            }
+        })
+    })
+    .joining(user => {
+        // console.log('joining ', user)
+        let element = $(`.contact[data-id="${user.id}"]`)
+        element.find('.contact-status').removeClass('offline')
+        element.find('.contact-status').addClass('online')
+    })
+    .leaving(user => {
+        // console.log('leaving ', user)
+        let element = $(`.contact[data-id="${user.id}"]`)
+        element.find('.contact-status').removeClass('online')
+        element.find('.contact-status').addClass('offline')
+    })
 
