@@ -1,4 +1,5 @@
 const selectedContact = $('meta[name="selected_contact"]')
+const authId = $('meta[name="auth_id"]').attr('content')
 const baseUrl = $('meta[name="base_url"]').attr('content')
 const inbox = $('.messages ul')
 
@@ -89,7 +90,12 @@ $(document).ready(function(){
         sendMessage()
     })
 
-
-
-
 })
+
+//listen to live event
+window.Echo.private('message.' + authId)
+    .listen('SendMessageEvent', (e)=> {
+        console.log(e)
+    })
+
+

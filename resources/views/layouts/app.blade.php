@@ -5,6 +5,7 @@
     <meta charset='UTF-8'>
     <meta name="robots" content="noindex">
     <meta name="base_url" content="{{ url('/')}}">
+    <meta name="auth_id" content="{{auth()->user()?->id}}">
     <meta name="selected_contact"  content="">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
     <link rel='stylesheet prefetch'
