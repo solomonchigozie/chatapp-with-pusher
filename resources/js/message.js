@@ -28,6 +28,16 @@ function fetchMessage(){
         },
         success : function(data){
             setContactInfo(data.contact)
+
+            //apend message
+            inbox.empty()
+            data.messages.forEach(value => {
+                if(value.from_id == contactId){
+                    inbox.append(messageTemplate(value.message, 'sent'))
+                }else{
+                    inbox.append(messageTemplate(value.message, 'replies'))
+                }
+            })
         },
         error: function(xhr, status, error){},
         complete : function(){
@@ -67,6 +77,7 @@ $(document).ready(function(){
         // console.log(selectedContact.attr('content'))
 
         //hide the blank wrapper
+        $('.blank-wrap').addClass('d-none')
 
         //fetch messages
         fetchMessage()

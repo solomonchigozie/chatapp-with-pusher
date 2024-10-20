@@ -24,8 +24,7 @@
             </div>
             <div class="messages">
                 <ul>
-                    <x-message class="sent" text='hello' />
-                    <x-message class="replies" text='hi' />
+                   {{-- dynamic content will go here   --}} 
                             
                 </ul>
             </div>
