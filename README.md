@@ -1,4 +1,7 @@
 # Chat App
-Screenshot of the application
+
+This application features a realtime messaging with pusher
+
+## Screenshot of the application
 
 ![App Screenshot](public/images/screenshot.png)
